@@ -1,0 +1,13 @@
+.company-input{
+    position: relative;
+    width: fit-content;
+    margin: auto;
+}
+
+.error{
+    position: absolute;
+    top: -10px;
+    left: 0;
+    font-size: 10px;
+    color: red;
+}
