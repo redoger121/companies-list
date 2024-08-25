@@ -24,7 +24,7 @@ export const EditCompanyContainer: FC<Props> = ({ company, setEditMode }) => {
     setInputFields({ ...inputFields, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleSubmit = (event: React.MouseEvent<SVGElement>) => {
     event.preventDefault();
     setErrors(validateValues(inputFields));
     setSubmiting(true);

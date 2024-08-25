@@ -50,6 +50,9 @@ button:hover {
   border-color: #646cff;
 }
 
+p{
+  margin: 0;
+}
 
 @media (prefers-color-scheme: light) {
   :root {

@@ -7,4 +7,6 @@ export type Company = {
 export type CompanyState = {
   companies: Company[];
   markedCompanies: string[];
+  moksLengh: number;
+  companiesLength: number;
 };

@@ -3,8 +3,33 @@
     justify-content: space-between;
     align-items: center;
     flex-wrap: nowrap;
+    max-width: 850px;
+    min-width: 600px;
+ 
 }
 
 .action-btn:nth-last-child(1){
     margin-left: 5px;
 }
+
+.table-wrap {
+    text-align: center;
+    display: inline-block;  
+  }
+
+
+  table {
+    border: 3px solid grey;
+    border-collapse: collapse;
+    overflow-x: auto;
+ }
+  
+  th {
+    border-bottom: 1px solid grey;
+ }
+
+  @media screen and (max-width: 600px) {
+    .table-wrap {
+      overflow-y: scroll;
+    }
+  }

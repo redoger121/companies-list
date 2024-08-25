@@ -1,10 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { Company, CompanyState } from '../types/company';
-import { companies } from '../components/mocks/companies';
+import { moks } from '../components/mocks/companies';
+const companies = moks.slice(0, 30);
 
 const initialState: CompanyState = {
   companies: companies,
   markedCompanies: [],
+  moksLengh: moks.length - 1,
+  companiesLength: moks.indexOf(companies[companies.length - 1]),
 };
 
 export const companiesSlice = createSlice({
@@ -37,11 +40,12 @@ export const companiesSlice = createSlice({
       state.companies = state.companies.filter(
         (company) => !state.markedCompanies.includes(company.id)
       );
+
       state.markedCompanies = [];
     },
 
     addCompany: (state, { payload }: { payload: Company }) => {
-      state.companies.push(payload);
+      state.companies = [payload, ...state.companies];
     },
     editCompany: (
       state,
@@ -58,6 +62,27 @@ export const companiesSlice = createSlice({
         address: address,
       };
     },
+
+    loadMoreCompanies: (state) => {
+      let newCompanies;
+      if (state.companiesLength + 31 <= state.moksLengh) {
+        newCompanies = moks.slice(
+          state.companiesLength + 1,
+          state.companiesLength + 31
+        );
+        state.companies = [...state.companies, ...newCompanies];
+        state.companiesLength = moks.indexOf(
+          state.companies[state.companies.length - 1]
+        );
+      } else {
+        newCompanies = moks.slice(
+          state.companiesLength + 1,
+          state.companiesLength + (state.moksLengh - state.companiesLength)
+        );
+        state.companies = [...state.companies, ...newCompanies];
+        state.companiesLength = state.moksLengh;
+      }
+    },
   },
 });
 
@@ -68,4 +93,5 @@ export const {
   deleteCompanies,
   addCompany,
   editCompany,
+  loadMoreCompanies,
 } = companiesSlice.actions;
